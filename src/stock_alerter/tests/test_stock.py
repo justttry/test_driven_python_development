@@ -72,6 +72,14 @@ class StockTest(unittest.TestCase):
         self.given_a_series_of_prices([8, 10, 10])
         self.assertFalse(self.goog.is_increasing_trend())        
     
+    #----------------------------------------------------------------------
+    def test_price_is_the_latest_even_if_updates_are_made_out_of_order(self):
+        """"""
+        self.goog.update(datetime(2014, 2, 13), price=8)
+        self.goog.update(datetime(2014, 2, 12), price=10)
+        self.assertEqual(8, self.goog.price)      
+
+
         
 if __name__ == "__main__":
     unittest.main()
